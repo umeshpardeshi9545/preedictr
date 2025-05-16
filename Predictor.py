@@ -26,7 +26,16 @@ except Exception as e:
     model = None
     st.error(f"Error loading the model: {e}")
 # Load the TF-IDF vectorizer
+url1 = "https://raw.githubusercontent.com/umeshpardeshi9545/preedictr/main/tfidf_vectorizer.pkl"
 
+# Load the model
+try:
+    with urllib.request.urlopen(url1) as response:
+        model_data1 = response.read()  # Read bytes
+        vectorizer = pickle.loads(model_data1)  # Load model from bytes
+except Exception as e:
+    model = None
+    st.error(f"Error loading the model: {e}")
 
 # Streamlit UI
 st.title("Medical Condition Prediction from Reviews")
