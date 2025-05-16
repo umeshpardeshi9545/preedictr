@@ -15,12 +15,18 @@ le = LabelEncoder()
 le.fit(label_mapping)
 
 # Load the trained model
-with open('logistic_regression_model.pkl', 'rb') as file:
-    model = pickle.load(file)
+url = "https://raw.githubusercontent.com/umeshpardeshi9545/preedictr/main/logistic_regression_model.pkl"
 
+# Load the model
+try:
+    with urllib.request.urlopen(url) as response:
+        model_data = response.read()  # Read bytes
+        model = pickle.loads(model_data)  # Load model from bytes
+except Exception as e:
+    model = None
+    st.error(f"Error loading the model: {e}")
 # Load the TF-IDF vectorizer
-with open('tfidf_vectorizer.pkl', 'rb') as file:
-    vectorizer = pickle.load(file)
+
 
 # Streamlit UI
 st.title("Medical Condition Prediction from Reviews")
