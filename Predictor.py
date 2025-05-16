@@ -9,6 +9,7 @@ import streamlit as st
 import pickle
 import pandas as pd
 import urllib.request
+from sklearn.preprocessing import LabelEncoder
 # Re-create and fit LabelEncoder (Ensure labels are the same as during training)
 label_mapping = ['Depression', 'Diabetes, Type 2', 'High Blood Pressure']  # Add all your conditions
 le = LabelEncoder()
